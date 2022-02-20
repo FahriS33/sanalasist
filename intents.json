@@ -1,0 +1,34 @@
+{"intents": [
+    {"tag": "selamlama",
+     "patterns": ["Merhaba", "Nasılsın", "Her şey yolunda mı?", "Selam", "İyi günler"],
+     "responses": ["Selam, ziyaret için teşekkürler", "Merhaba, nasıl yardımcı olabilirim?"],
+     "context_set": ""
+    },
+    {"tag": "hoscakal",
+     "patterns": ["Bay bay", "Sonra görüşürüz", "Hoşçakal"],
+     "responses": ["Sonra görüşürüz, ziyaret için teşekkürler", "Tekrar görüşmek üzere","Mutlu günler", "Hoşçakal, yakın zamanda görüşürüz."]
+     
+    },
+    {"tag": "adin",
+        "patterns": ["Adin ne?", "ismin ne", "adin"],
+        "responses": ["izzet can - punisher", "bot gamer izzet"]
+       },
+    {"tag": "tesekkürler",
+     "patterns": ["Teşekkürler", "Teşekkür ederim", "Bu yardımcı oldu "],
+     "responses": ["Memnuniyetle yardım ettim!", "Her zaman!", "Zevkle"]
+    },
+    {"tag": "saat",
+     "patterns": ["Kaç saat aktifsin?", "Saat aralığınız nedir?", "Ne zaman açıyorsunuz?" ],
+     "responses": ["Her gün 7/24 açığız", "İstenilen her an erişebilirsiniz"]
+    },
+    {"tag": "ödeme",
+     "patterns": ["Bütün kartları kabul ediyor musunuz?", "Mastercard kabul ediyor musunuz?", "Nakit geçerli mi?" ],
+     "responses": ["VISA kabul ediyoruz, Mastercard and AMEX", "En büyük kredi kratlarını kabul ediyoruz"]
+    },
+    {"tag": "bugunacik",
+     "patterns": ["Bugün açık mı?", "Bugün ne zaman açıyorsun?", "Bugün ki saat aralığın nedir?"],
+     "responses": ["Her gün 7/24 açığız", "Dilediğiniz zaman sisteme erişebilirsiniz"]
+    }
+    
+]
+}
