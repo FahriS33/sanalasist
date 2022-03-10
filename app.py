@@ -1,3 +1,5 @@
+from flask import Flask, render_template, request, jsonify
+import datetime
 
 import nltk
 from snowballstemmer import TurkishStemmer
@@ -8,13 +10,11 @@ import tflearn
 import tensorflow
 import random
 import json
-import pickle
+
 
 
 with open(r"intents.json", encoding='utf-8') as file:
     data = json.load(file)
-with open("data.pickle","rb") as f:
-	words, labels, training, output = pickle.load(f)
 
 
 words = []
@@ -89,27 +89,31 @@ def bag_of_words(s, words):
             
     return numpy.array(bag)
 
+app = Flask(__name__)
 
-def chat():
-    print("Chatbot ile konuşmaya başlayabilirsiniz (tamam yazarak çıkabilirsiniz)!")
-    while True:
-        inp = input("Sen: ")
-        if inp.lower() == "tamam":
-            break
+@app.route('/')
+def index():
+	return render_template('index.html')
 
-        results = model.predict([bag_of_words(inp, words)])[0]
-        results_index = numpy.argmax(results)
-        tag = labels[results_index]
-        
-        if results[results_index] > 0.8:
-            for tg in data["intents"]:
-                if tg['tag'] == tag:
-                    responses = tg['responses']
-                    
-            
-            print(random.choice(responses))
-        else:
-            print("Üzgünüm, seni anlayamadım")
-            
+@app.route('/get')
+def get_bot_response():
+	global seat_count
+	message = request.args.get('msg')
+	if message:
+		message = message.lower()
+		results = model.predict([bag_of_words(message,words)])[0]
+		result_index = numpy.argmax(results)
+		tag = labels[result_index]
+		if results[result_index] > 0.8:
+				for tg in data['intents']:
+					if tg['tag'] == tag:
+						responses = tg['responses']
+				response = random.choice(responses)
+		else:
+			response = "Üzgünüm Seni Anlayamadım"
+		return str(response)
+	
 
-chat()
+	
+if __name__ == "__main__":
+	app.run()
